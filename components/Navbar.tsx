@@ -1,9 +1,8 @@
-"use client"
-
 import { Menu, Plus } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 import { Button } from "./ui/button"
 import { ModeToggle } from "./mode-toggle"
+import NewPromptTrigger from "./NewPrompt"
 
 const Navbar = () => {
 
@@ -18,7 +17,9 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent>
                 <div className="my-5 flex flex-col justify-center">
-                    <Button variant='outline' className="m-2 w-full">New Prompt <Plus size={18} className="mx-1" /></Button>
+                    <NewPromptTrigger>
+                        <Button variant='outline' className="m-2 w-full">New Prompt <Plus size={18} className="mx-1" /></Button>
+                    </NewPromptTrigger>
                     <ModeToggle className="w-full" />
                 </div>
             </SheetContent>
@@ -26,7 +27,9 @@ const Navbar = () => {
 
         {/* DESKTOP NAVIGATION */}
         <div className="flex-row hidden sm:flex items-center">
-            <Button variant='outline' className="mx-2">New Prompt <Plus size={18} className="mx-1" /></Button>
+            <NewPromptTrigger>
+                <Button variant='outline' className="mx-2">New Prompt <Plus size={18} className="mx-1" /></Button>
+            </NewPromptTrigger>
             <ModeToggle />
         </div>
     </nav>

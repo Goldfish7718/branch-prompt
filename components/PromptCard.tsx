@@ -1,5 +1,3 @@
-"use client"
-
 import { ArrowUpRightFromSquare, Contact, Settings } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { Separator } from "./ui/separator"
@@ -23,8 +21,8 @@ const PropmptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
         <CardContent className="flex-grow p-4">
             <p>{prompt.substring(0, 100) + '...'}</p>
             <div id="tags" className="my-2">
-                {tags.map(tag => (
-                        <Badge variant="outline" className="mx-1">{tag}</Badge>
+                {tags.map((tag, index) => (
+                        <Badge key={index} variant="outline" className="mx-1">{tag}</Badge>
                     ))
                 }
             </div>

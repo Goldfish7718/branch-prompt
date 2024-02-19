@@ -54,9 +54,9 @@ const Feed = () => {
             </DropdownMenu>
         </div>
 
-        <div id="prompts" className="grid grid-cols-4 gap-4">
-            {prompts.map(prompt => (
-                    <PropmptCard {...prompt} />
+        <div id="prompts" className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            {prompts.map((prompt, index) => (
+                    <PropmptCard key={index} {...prompt} />
                 ))
             }
         </div>

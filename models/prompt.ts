@@ -5,6 +5,7 @@ export interface PromptType {
     prompt: string;
     branch?: string;
     contact?: string;
+    title: string;
 }
 
 const promptSchema = new Schema<PromptType>({
@@ -16,17 +17,20 @@ const promptSchema = new Schema<PromptType>({
             required: true,
         }
     ],
+    title: {
+        type: String,
+        required: true
+    },
     prompt: {
         type: String,
         required: true
     },
     branch: {
         type: String,
-        default: "N/A"
+        required: true
     },
     contact: {
         type: String,
-        default: "N/A"
     }
 })
 

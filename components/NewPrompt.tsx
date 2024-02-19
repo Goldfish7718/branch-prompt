@@ -84,6 +84,7 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
                 description: "Please try again later",
                 variant: "destructive"
             })
+            console.error(err)
         } finally {
             setLoading(false)
         }

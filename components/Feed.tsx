@@ -5,7 +5,7 @@ import { Button } from "./ui/button"
 import { DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Label } from "./ui/label"
 import { ChevronDown } from "lucide-react"
-import PropmptCard from "./PromptCard"
+import PromptCard from "./PromptCard"
 import axios from "axios"
 import { PromptType } from "@/models/prompt"
 import { useToast } from "./ui/use-toast"
@@ -65,8 +65,8 @@ const Feed = () => {
     }, [branch])
 
   return (
-    <section className="px-10">
-        <div className="text-center mb-10">
+    <section>
+        <div className="text-center mb-10 px-10">
             <Label className="mx-2">Filter by Branch:</Label>
             <DropdownMenu>
                 <DropdownMenuTrigger className="w-auto">
@@ -93,9 +93,9 @@ const Feed = () => {
             </DropdownMenu>
         </div>
 
-        <div id="prompts" className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mb-20">
+        <div id="prompts" className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mb-20 px-3 sm:px-6 md:px-10">
             {!loading && prompts.map((prompt, index) => (
-                    <PropmptCard key={index} {...prompt} />
+                    <PromptCard key={index} {...prompt} />
                 ))
             }
             {loading && Array.from({ length: 4 }).map((_, index) => (

@@ -84,7 +84,6 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
                 description: "Please try again later",
                 variant: "destructive"
             })
-            console.error(err)
         } finally {
             setLoading(false)
         }
@@ -124,7 +123,7 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
                     </div>
                 </div>
 
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                     <div className="flex-grow">
                         <Label className="my-2">Select Branch:</Label>
                         <DropdownMenu>

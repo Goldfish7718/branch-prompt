@@ -2,8 +2,10 @@ import Feed from "@/components/Feed";
 import NewPromptTrigger from "@/components/NewPrompt";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRightFromSquare } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
   return (
     <main>
       <div id="header" className="text-center">

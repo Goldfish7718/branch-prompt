@@ -1,3 +1,5 @@
+"use client"
+
 import { GitBranch, Menu, Plus } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 import { Button } from "./ui/button"
@@ -6,10 +8,17 @@ import NewPromptTrigger from "./NewPrompt"
 
 const Navbar = () => {
 
+    const scrollToHeader = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
   return (
     <nav className="p-4 py-6 sm:p-3 sm:mt-0 sm:text-left z-10 fixed top-0 flex justify-between items-center w-full dark:bg-[#0a0a0a] dark:bg-opacity-70 backdrop-blur-sm">
         <div className="flex flex-row items-center">
-            <h3>Branch-Prompt</h3>
+            <h3 onClick={() => scrollToHeader()} className="hover:cursor-pointer">Branch-Prompt</h3>
             <GitBranch size={24} className="mx-2" />
         </div>
 

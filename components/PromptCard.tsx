@@ -7,7 +7,7 @@ import Tooltip from "./Tooltip"
 import { PromptType } from "@/models/prompt"
 import FullPromptTrigger from "./FullPrompt"
 
-const PropmptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
+const PromptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
   
     const fullPromptProps = {
         title,
@@ -54,4 +54,4 @@ const PropmptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
   )
 }
 
-export default PropmptCard
+export default PromptCard

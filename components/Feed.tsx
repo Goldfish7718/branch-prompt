@@ -8,24 +8,61 @@ import { ChevronDown } from "lucide-react"
 import PropmptCard from "./PromptCard"
 import axios from "axios"
 import { PromptType } from "@/models/prompt"
+import { useToast } from "./ui/use-toast"
+import { Skeleton } from "./ui/skeleton"
 
 const Feed = () => {
 
-    const [branch, setBranch] = useState("")
+    const [branch, setBranch] = useState("All")
     const [prompts, setPrompts] = useState<PromptType[]>([])
+    const [loading, setloading] = useState(false)
+
+    const { toast } = useToast()
+
+    const fetchPrompts = async () => {
+        try {
+            setloading(true)
+            const res = await axios.get('/api/prompt')
+            setPrompts(res.data)
+        } catch (err) {
+            toast({
+                title: "An Error Occured while fetching prompts",
+                description: "Please try again later",
+                variant: "destructive"
+            })
+        } finally {
+            setloading(false)
+        }
+    }
 
     useEffect(() => {
-        const fetchPrompts = async () => {
+        fetchPrompts()
+    }, [])
+
+    useEffect(() => {
+        if (branch == 'All') {
+            fetchPrompts()
+            return;
+        } 
+
+        const fetchPromptsByBranch = async () => {
             try {
-                const res = await axios.get('/api/prompt')
+                setloading(true)
+                const res = await axios.get(`/api/prompt/branch/${branch}`)
                 setPrompts(res.data)
             } catch (err) {
-                console.log(err);
+                toast({
+                    title: "An Error Occured while fetching prompts",
+                    description: "Please try again later",
+                    variant: "destructive"
+                })
+            } finally {
+                setloading(false)
             }
         }
 
-        fetchPrompts()
-    }, [])
+        fetchPromptsByBranch()
+    }, [branch])
 
   return (
     <section className="px-10">
@@ -49,14 +86,26 @@ const Feed = () => {
                         <DropdownMenuRadioItem value="E&TC">E&TC</DropdownMenuRadioItem>
                         <DropdownMenuRadioItem value="Robotics">Robotics</DropdownMenuRadioItem>
                         <DropdownMenuRadioItem value="Electrical">Electrical</DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="Civil">Civil</DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="All">All</DropdownMenuRadioItem>
                     </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
 
-        <div id="prompts" className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-            {prompts.map((prompt, index) => (
+        <div id="prompts" className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mb-20">
+            {!loading && prompts.map((prompt, index) => (
                     <PropmptCard key={index} {...prompt} />
+                ))
+            }
+            {loading && Array.from({ length: 4 }).map((_, index) => (
+                    <div className="flex flex-col gap-3" key={index}>
+                        <Skeleton className="h-[30px]" />
+                        <Skeleton className="h-[20px] w-[250px]" />
+                        <div>
+                            <Skeleton className="h-[250px]" />
+                        </div>
+                    </div>
                 ))
             }
         </div>

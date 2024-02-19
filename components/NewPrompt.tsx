@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import { ChevronDown, Plus } from "lucide-react";
+import { ChevronDown, Loader2, Plus } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "./ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
@@ -26,6 +26,7 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
     const [contact, setContact] = useState('')
 
     const [tag, setTag] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const { toast } = useToast()
 
@@ -64,6 +65,7 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
 
     const requestPostPrompt = async () => {
         try {
+            setLoading(true)
             await axios.post('/api/prompt', {
                 tags,
                 title,
@@ -82,6 +84,8 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
                 description: "Please try again later",
                 variant: "destructive"
             })
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -108,8 +112,8 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
                 <div>
                     <Label className="my-2">Tags:</Label>
                     {tags.length > 0 && tags.map((tag, index) => (
-                            <Tooltip label="Click to delete">
-                                <Badge key={index} variant="outline" className="mb-2 mx-1" onClick={() => removeItemByIndex(index)}>{tag}</Badge>
+                            <Tooltip label="Click to delete" key={index}>
+                                <Badge variant="outline" className="mb-2 mx-1" onClick={() => removeItemByIndex(index)}>{tag}</Badge>
                             </Tooltip>
                         ))  
                     }
@@ -140,6 +144,7 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
                                     <DropdownMenuRadioItem value="E&TC">E&TC</DropdownMenuRadioItem>
                                     <DropdownMenuRadioItem value="Robotics">Robotics</DropdownMenuRadioItem>
                                     <DropdownMenuRadioItem value="Electrical">Electrical</DropdownMenuRadioItem>
+                                    <DropdownMenuRadioItem value="Civil">Civil</DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -154,7 +159,10 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
             <DialogFooter>
                 <Button className="w-full m-2" variant="outline" onClick={handleClearForm}>Clear form</Button>
                 <DialogClose asChild>
-                    <Button className="w-full m-2" onClick={requestPostPrompt}>Post prompt</Button>
+                    <Button className="w-full m-2" onClick={requestPostPrompt} disabled={loading}>
+                        {loading && <Loader2 size={18} className="animate-spin" />}
+                        {!loading && 'Post prompt'}
+                    </Button>
                 </DialogClose>
             </DialogFooter>
         </DialogContent>

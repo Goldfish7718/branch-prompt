@@ -5,15 +5,26 @@ import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import Tooltip from "./Tooltip"
 import { PromptType } from "@/models/prompt"
+import FullPromptTrigger from "./FullPrompt"
 
 const PropmptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
-  return (
+  
+    const fullPromptProps = {
+        title,
+        prompt,
+        tags,
+        contact,
+        branch
+    }
+  
+    return (
     <Card className="flex flex-col">
         <CardHeader className="p-4 flex flex-row justify-between items-center">
             <CardTitle className="text-lg">{title}</CardTitle>
-
             <Tooltip label="Open full prompt">
-                <Button variant="outline"><ArrowUpRightFromSquare size={18} /></Button>
+                <FullPromptTrigger {...fullPromptProps}>
+                    <Button variant="outline"><ArrowUpRightFromSquare size={18} /></Button>
+                </FullPromptTrigger>
             </Tooltip>
         </CardHeader>
         <Separator />

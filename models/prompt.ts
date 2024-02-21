@@ -12,9 +12,8 @@ const promptSchema = new Schema<PromptType>({
     tags: [
         {
             type: String,
-            max: 5,
+            max: 3,
             min: 1,
-            required: true,
         }
     ],
     title: {
@@ -32,6 +31,9 @@ const promptSchema = new Schema<PromptType>({
     contact: {
         type: String,
     }
+},
+{
+    timestamps: true,
 })
 
 const Prompt = models.Prompt || model('Prompt', promptSchema)

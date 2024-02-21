@@ -66,6 +66,16 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
     const requestPostPrompt = async () => {
         try {
             setLoading(true)
+
+            if (!title || !prompt || !branch) {
+                toast({
+                    title: "Please provide a title, prompt and branch!",
+                    variant: "destructive"
+                })
+
+                return;
+            }
+
             await axios.post('/api/prompt', {
                 tags,
                 title,

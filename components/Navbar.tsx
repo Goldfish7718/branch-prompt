@@ -1,6 +1,6 @@
 "use client"
 
-import { Cross, GitBranch, Info, Menu, Plus, X } from "lucide-react"
+import { GitBranch, Info, Menu, Plus, X } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 import { Button } from "./ui/button"
 import { ModeToggle } from "./mode-toggle"

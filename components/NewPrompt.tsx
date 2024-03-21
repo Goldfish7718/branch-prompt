@@ -99,85 +99,85 @@ const NewPromptTrigger = ({ children }: NewPromptProps) => {
         }
     }
 
-  return (
-    <Dialog>
-        <DialogTrigger asChild>
-            {children}
-        </DialogTrigger>
-        <DialogContent>
-            <DialogHeader>
-                <DialogTitle>New Prompt</DialogTitle>
-            </DialogHeader>
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                {children}
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>New Prompt</DialogTitle>
+                </DialogHeader>
 
-            <div id="form" className="flex flex-col gap-4">
-                <div>
-                    <Label className="my-2">Title:</Label>
-                    <Input placeholder="Enter Prompt Title" onChange={e => setTitle(e.target.value)} value={title} />
-                </div>
-                <div>
-                    <Label className="my-2">Prompt:</Label>
-                    <Textarea placeholder="Enter your prompt here..." onChange={e => setPrompt(e.target.value)} value={prompt} />
-                </div>
-
-                <div>
-                    <Label className="my-2">Tags:</Label>
-                    {tags.length > 0 && tags.map((tag, index) => (
-                            <Tooltip label="Click to delete" key={index}>
-                                <Badge variant="outline" className="mb-2 mx-1" onClick={() => removeItemByIndex(index)}>{tag}</Badge>
-                            </Tooltip>
-                        ))  
-                    }
-                    <div className="flex flex-row gap-2">
-                        <Input placeholder="Enter Tags" onChange={e => setTag(e.target.value)} value={tag} />
-                        <Button onClick={handleTagAdd}><Plus /></Button>
-                    </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-2">
-                    <div className="flex-grow">
-                        <Label className="my-2">Select Branch:</Label>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger className="w-full">
-                                <Button className="w-full" variant="outline">{branch ? branch : 'Open'} <ChevronDown size={18} className="mx-1" /></Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuLabel>Select Branch</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-
-                                <DropdownMenuRadioGroup value={branch} onValueChange={setBranch}>
-                                    <DropdownMenuRadioItem value="Computer">Computer</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="AIDS">AIDS</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="IT">IT</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="CSD">CSD</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Mechanical">Mechanical</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Chemical">Chemical</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="E&TC">E&TC</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Robotics">Robotics</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Electrical">Electrical</DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="Civil">Civil</DropdownMenuRadioItem>
-                                </DropdownMenuRadioGroup>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                <div id="form" className="flex flex-col gap-4">
+                    <div>
+                        <Label className="my-2">Title:</Label>
+                        <Input placeholder="Enter Prompt Title" onChange={e => setTitle(e.target.value)} value={title} />
                     </div>
                     <div>
-                        <Label className="my-2">Contact: (Optional)</Label>
-                        <Input placeholder="Phone number or Email" onChange={e => setContact(e.target.value)} value={contact} />
+                        <Label className="my-2">Prompt:</Label>
+                        <Textarea placeholder="Enter your prompt here..." onChange={e => setPrompt(e.target.value)} value={prompt} />
+                    </div>
+
+                    <div>
+                        <Label className="my-2">Tags:</Label>
+                        {tags.length > 0 && tags.map((tag, index) => (
+                                <Tooltip label="Click to delete" key={index}>
+                                    <Badge variant="outline" className="mb-2 mx-1" onClick={() => removeItemByIndex(index)}>{tag}</Badge>
+                                </Tooltip>
+                            ))  
+                        }
+                        <div className="flex flex-row gap-2">
+                            <Input placeholder="Enter Tags" onChange={e => setTag(e.target.value)} value={tag} />
+                            <Button onClick={handleTagAdd}><Plus /></Button>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-2">
+                        <div className="flex-grow">
+                            <Label className="my-2">Select Branch:</Label>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="w-full">
+                                    <Button className="w-full" variant="outline">{branch ? branch : 'Open'} <ChevronDown size={18} className="mx-1" /></Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>Select Branch</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+
+                                    <DropdownMenuRadioGroup value={branch} onValueChange={setBranch}>
+                                        <DropdownMenuRadioItem value="Computer">Computer</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="AIDS">AIDS</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="IT">IT</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="CSD">CSD</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="Mechanical">Mechanical</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="Chemical">Chemical</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="E&TC">E&TC</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="Robotics">Robotics</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="Electrical">Electrical</DropdownMenuRadioItem>
+                                        <DropdownMenuRadioItem value="Civil">Civil</DropdownMenuRadioItem>
+                                    </DropdownMenuRadioGroup>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                        <div>
+                            <Label className="my-2">Contact: (Optional)</Label>
+                            <Input placeholder="Phone number or Email" onChange={e => setContact(e.target.value)} value={contact} />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <DialogFooter>
-                <Button className="w-full m-2" variant="outline" onClick={handleClearForm}>Clear form</Button>
-                <DialogClose asChild>
-                    <Button className="w-full m-2" onClick={requestPostPrompt} disabled={loading}>
-                        {loading && <Loader2 size={18} className="animate-spin" />}
-                        {!loading && 'Post prompt'}
-                    </Button>
-                </DialogClose>
-            </DialogFooter>
-        </DialogContent>
-    </Dialog>
-  )
+                <DialogFooter>
+                    <Button className="w-full m-2" variant="outline" onClick={handleClearForm}>Clear form</Button>
+                    <DialogClose asChild>
+                        <Button className="w-full m-2" onClick={requestPostPrompt} disabled={loading}>
+                            {loading && <Loader2 size={18} className="animate-spin" />}
+                            {!loading && 'Post prompt'}
+                        </Button>
+                    </DialogClose>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    )
 }
 
 export default NewPromptTrigger

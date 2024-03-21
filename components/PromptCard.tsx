@@ -7,14 +7,15 @@ import Tooltip from "./Tooltip"
 import { PromptType } from "@/models/prompt"
 import FullPromptTrigger from "./FullPrompt"
 
-const PromptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
-  
+const PromptCard = ({ title, prompt, tags, contact, branch, _id }: PromptType) => {
+
     const fullPromptProps = {
         title,
         prompt,
         tags,
         contact,
-        branch
+        branch, 
+        _id,
     }
   
     return (

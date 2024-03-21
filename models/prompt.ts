@@ -6,6 +6,7 @@ export interface PromptType {
     branch?: string;
     contact?: string;
     title: string;
+    _id: string;
 }
 
 const promptSchema = new Schema<PromptType>({

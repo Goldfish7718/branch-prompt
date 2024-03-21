@@ -14,8 +14,6 @@ interface FullPromptProps extends PromptType {
     children: React.ReactNode;
 }
 
-
-
 export const FullPromptTriggerDialog = ({ title, prompt, tags, branch, contact, children, _id }: FullPromptProps) => {
 
     const [comments, setComments] = useState<CommentType[]>([])

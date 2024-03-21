@@ -1,31 +1,41 @@
-import { ArrowUpRightFromSquare, Contact, Settings } from "lucide-react"
+import { ArrowUpRightFromSquare, Contact, MessageSquare, Settings } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { Separator } from "./ui/separator"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import Tooltip from "./Tooltip"
 import { PromptType } from "@/models/prompt"
-import FullPromptTrigger from "./FullPrompt"
+import { FullPromptTriggerDialog, FullPromptTriggerDrawer } from "./FullPrompt"
+import CommentInputTrigger from "./CommentInput"
 
-const PromptCard = ({ title, prompt, tags, contact, branch }: PromptType) => {
-  
+const PromptCard = ({ title, prompt, tags, contact, branch, _id }: PromptType) => {
+
     const fullPromptProps = {
         title,
         prompt,
         tags,
         contact,
-        branch
+        branch, 
+        _id,
     }
   
     return (
     <Card className="flex flex-col">
         <CardHeader className="p-4 flex flex-row justify-between items-center">
-            <CardTitle className="text-lg">{title}</CardTitle>
-            <Tooltip label="Open full prompt">
-                <FullPromptTrigger {...fullPromptProps}>
-                    <Button variant="outline"><ArrowUpRightFromSquare size={18} /></Button>
-                </FullPromptTrigger>
-            </Tooltip>
+            <CardTitle className="text-lg flex-grow">{title}</CardTitle>
+                <Tooltip label="Comment">
+                    <CommentInputTrigger {...fullPromptProps}>
+                        <Button variant='ghost' className="mx-2"><MessageSquare size={18} /></Button>
+                    </CommentInputTrigger>
+                </Tooltip>
+                <Tooltip label="Open full prompt">
+                    <FullPromptTriggerDialog {...fullPromptProps}>
+                        <Button variant="ghost" className="hidden sm:block"><ArrowUpRightFromSquare size={18} /></Button>
+                    </FullPromptTriggerDialog>
+                </Tooltip>
+                <FullPromptTriggerDrawer {...fullPromptProps}>
+                    <Button variant="ghost" className="sm:hidden"><ArrowUpRightFromSquare size={18} /></Button>
+                </FullPromptTriggerDrawer>
         </CardHeader>
         <Separator />
 

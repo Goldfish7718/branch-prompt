@@ -1,7 +1,7 @@
 import Feed from "@/components/Feed";
-import NewPromptTrigger from "@/components/NewPrompt";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRightFromSquare } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -21,9 +21,7 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center mt-10 mb-5">
           <h4>You can have one of these too!</h4>
-          <NewPromptTrigger>
-            <Button variant="link">Create new prompt <ArrowUpRightFromSquare size={18} className="mx-1" /></Button>
-          </NewPromptTrigger>
+            <Button variant="link"><Link href='/new'>Create new prompt</Link> <ArrowUpRightFromSquare size={18} className="mx-1" /></Button>
         </div>
       </div>
 
